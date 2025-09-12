@@ -6,11 +6,11 @@
 /*   By: abazzoun <abazzoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 12:19:19 by abazzoun          #+#    #+#             */
-/*   Updated: 2025/09/04 12:50:42 by abazzoun         ###   ########.fr       */
+/*   Updated: 2025/06/23 16:47:31 by abazzoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line_internal.h"
+#include "get_next_line.h"
 
 char	*get_next_line(int fd)
 {

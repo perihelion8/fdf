@@ -6,11 +6,11 @@
 /*   By: abazzoun <abazzoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 12:27:35 by abazzoun          #+#    #+#             */
-/*   Updated: 2025/09/04 12:50:51 by abazzoun         ###   ########.fr       */
+/*   Updated: 2025/06/23 16:47:30 by abazzoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line_internal.h"
+#include "get_next_line.h"
 
 t_uint	ft_gnl_strlen(const char *s)
 {
