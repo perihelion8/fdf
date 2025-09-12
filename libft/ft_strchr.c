@@ -6,7 +6,7 @@
 /*   By: abazzoun <abazzoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 16:55:34 by abazzoun          #+#    #+#             */
-/*   Updated: 2025/06/05 16:58:47 by abazzoun         ###   ########.fr       */
+/*   Updated: 2025/09/12 20:02:15 by abazzoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*ft_strchr(const char *s, int c)
 	if (c == '\0')
 		return ((char *)(s + ft_strlen(s)));
 	while (*s)
-	{	
+	{
 		if (*s == (unsigned char)c)
 			return ((char *) s);
 		s++;

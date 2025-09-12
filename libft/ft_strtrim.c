@@ -6,7 +6,7 @@
 /*   By: abazzoun <abazzoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 12:35:30 by a                 #+#    #+#             */
-/*   Updated: 2025/06/05 17:02:57 by abazzoun         ###   ########.fr       */
+/*   Updated: 2025/09/12 20:00:42 by abazzoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char	*ft_strtrim(const char *s, const char *set)
 	{
 		trimmed[i] = s[i];
 		i++;
-	}	
+	}
 	trimmed[i] = '\0';
 	return (trimmed);
 }
