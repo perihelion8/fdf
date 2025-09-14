@@ -9,7 +9,8 @@ GNL_DIR		:=	get_next_line
 MLX_DIR		:=	mlx_linux
 
 SRC      	:=	get_next_line/get_next_line.c get_next_line/get_next_line_utils.c \
-				main.c parser.c project_iso.c draw.c handle_key.c xmalloc.c free.c
+				list.c list_grid.c list_utils.c renderer.c\
+				main.c parser.c project_iso.c draw.c handler.c xmalloc.c grid_print.c
 OBJ      	:=	$(SRC:%.c=$(OBJ_DIR)/%.o)
 
 LIBFT		:=	$(LIBFT_DIR)/libft.a

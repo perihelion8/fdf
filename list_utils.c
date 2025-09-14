@@ -1,46 +1,50 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   list_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abazzoun <abazzoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/12 22:17:29 by abazzoun          #+#    #+#             */
-/*   Updated: 2025/09/12 23:09:09 by abazzoun         ###   ########.fr       */
+/*   Created: 2025/09/14 09:47:03 by abazzoun          #+#    #+#             */
+/*   Updated: 2025/09/14 11:31:37 by abazzoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "list_internal.h"
+#include "libft.h"
 
-void	free_arri(void *ptr)
+static int	index_hexbase(char c)
 {
-	t_arri	*arri;
+	const char	*base_upper;
+	const char	*base_lower;
+	int			i;
 
-	if (!ptr)
-		return ;
-	arri = ptr;
-	if (arri->data)
-		free(arri->data);
-	free(arri);
+	base_lower = "0123456789abcdef";
+	base_upper = "0123456789ABCDEF";
+	i = 0;
+	while (i < 16)
+	{
+		if (c == base_lower[i])
+			return (i);
+		if (c == base_upper[i])
+			return (i);
+		i++;
+	}
+	return (i);
 }
 
-void	free_map(t_map *map)
+int	hextoi(const char *str)
 {
-	size_t	i;
+	int	n;
 
-	if (!map)
-		return ;
-	if (map->width || map->height)
+	n = 0;
+	str += 2;
+	while (*str)
 	{
-		i = 0;
-		while (i < map->height)
-		{
-			free(map->cells[i]);
-			i++;
-		}
-		free(map->cells);
+		n = n * 16 + index_hexbase(*str);
+		str++;
 	}
-	free(map);
+	return (n);
 }
 
 void	free_split(char **split)

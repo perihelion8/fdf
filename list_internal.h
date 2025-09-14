@@ -1,28 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear.c                                      :+:      :+:    :+:   */
+/*   list_internal.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abazzoun <abazzoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/03 14:09:50 by a                 #+#    #+#             */
-/*   Updated: 2025/06/05 16:51:24 by abazzoun         ###   ########.fr       */
+/*   Created: 2025/09/14 06:26:19 by abazzoun          #+#    #+#             */
+/*   Updated: 2025/09/14 11:48:33 by abazzoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef LIST_INTERNAL_H
+# define LIST_INTERNAL_H
 
-void	ft_lstclear(t_list **lst, void (*del)(void *))
+#include <stdio.h>
+# include "list.h"
+
+typedef struct s_node
 {
-	t_list	*tmp;
+	char			*str;
+	struct s_node	*next;
+}	t_node;
 
-	if (lst == NULL || del == NULL)
-		return ;
-	while (*lst)
-	{
-		tmp = (*lst)->next;
-		ft_lstdelone(*lst, del);
-		*lst = tmp;
-	}
-	*lst = NULL;
-}
+struct s_list
+{
+	t_node	*head;
+	t_node	*tail;
+	size_t	len;
+};
+
+void	free_split(char **split);
+int		hextoi(const char *str);
+
+#endif
