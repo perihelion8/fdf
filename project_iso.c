@@ -6,7 +6,7 @@
 /*   By: abazzoun <abazzoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/05 10:47:12 by abazzoun          #+#    #+#             */
-/*   Updated: 2025/09/14 14:06:56 by abazzoun         ###   ########.fr       */
+/*   Updated: 2025/09/14 15:42:47 by abazzoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,10 @@ t_point2d	project_iso(int x, int y, t_cell cell, t_props props)
 	t_point2d	proj;
 	double		angle;
 
-	p = rotate_point(x, y, cell.z, props);
-	p.x = p.x * props.scale;
-	p.y = p.y * props.scale;
-	p.z = p.z * props.scale * 0.1;
+	p.x = x * props.scale;
+	p.y = y * props.scale;
+	p.z = cell.z * props.scale * 0.3;
+	p = rotate_point(p.x, p.y, p.z, props);
 	angle = M_PI / 6;
 	proj.x = (int)((p.x - p.y) * cos(angle)) + props.offset_x;
 	proj.y = (int)((p.x + p.y) * sin(angle) - p.z) + props.offset_y;

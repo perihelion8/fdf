@@ -6,7 +6,7 @@
 /*   By: abazzoun <abazzoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 14:03:08 by abazzoun          #+#    #+#             */
-/*   Updated: 2025/09/14 13:29:29 by abazzoun         ###   ########.fr       */
+/*   Updated: 2025/09/14 21:01:01 by abazzoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void		*xmalloc(size_t	size);
 t_grid		*parse_fdf(const char *file_name);
 t_point2d	project_iso(int x, int y, t_cell cell, t_props props);
 t_props		props_init();
-void		draw_grid(t_renderer r, t_grid *grid, t_props props);
+void		draw_grid(t_renderer *r, t_grid *grid, t_props props);
 int			handle_key(int keycode, void *param);
 int			handle_close(void *param);
 

@@ -6,12 +6,11 @@
 /*   By: abazzoun <abazzoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 12:16:56 by abazzoun          #+#    #+#             */
-/*   Updated: 2025/09/14 13:21:43 by abazzoun         ###   ########.fr       */
+/*   Updated: 2025/09/14 21:08:18 by abazzoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "renderer.h"
-#include "mlx.h"
 
 t_renderer renderer_init(int width, int height)
 {
@@ -28,19 +27,26 @@ t_renderer renderer_init(int width, int height)
 	return (r);
 }
 
-void	renderer_render(t_renderer r)
+void	renderer_run(t_renderer *r, void *var, t_key_hook kh, t_close_hook ch)
 {
-	mlx_put_image_to_window(r.mlx, r.win, r.img.img, 0, 0);
+	mlx_key_hook(r->win, kh, var);
+	mlx_hook(r->win, 17, 0, ch, var);
+	mlx_loop(r->mlx);
 }
 
-void	renderer_put_pixel(t_renderer r, int x, int y, int color)
+void	renderer_put_pixel(t_renderer *r, int x, int y, int color)
 {
 	t_img	img;
 	char	*dst;
 
-	if (x < 0 || x >= r.width || y < 0 || y >= r.height)
+	if (x < 0 || x >= r->width || y < 0 || y >= r->height)
 		    return ;
-	img = r.img;
+	img = r->img;
 	dst = img.addr + (y * img.line_len + x * (img.bpp / 8));
 	*(unsigned int*)dst = color;
+}
+
+void	renderer_push_img_to_win(t_renderer *r)
+{
+	mlx_put_image_to_window(r->mlx, r->win, r->img.img, 0, 0);
 }

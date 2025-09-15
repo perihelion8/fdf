@@ -6,7 +6,7 @@
 /*   By: abazzoun <abazzoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 08:59:52 by abazzoun          #+#    #+#             */
-/*   Updated: 2025/09/14 11:52:57 by abazzoun         ###   ########.fr       */
+/*   Updated: 2025/09/14 14:47:39 by abazzoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static t_cell	cell_new(char *str)
 	if (commaptr)
 		cell.color = hextoi(commaptr + 1);
 	else
-		cell.color = 0xFFFFFF;
+		cell.color = 0x0000FF;
 	return (cell);
 }
 

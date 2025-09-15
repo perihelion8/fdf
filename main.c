@@ -6,7 +6,7 @@
 /*   By: abazzoun <abazzoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 22:37:44 by abazzoun          #+#    #+#             */
-/*   Updated: 2025/09/14 13:29:33 by abazzoun         ###   ########.fr       */
+/*   Updated: 2025/09/14 21:09:15 by abazzoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,7 @@ int	main(int argc, char *argv[])
 	fdf.grid = parse_fdf(argv[1]);
 	fdf.props = props_init();
 	fdf.r = renderer_init(FDF_WIDTH, FDF_HEIGHT);
-	mlx_key_hook(fdf.r.win, handle_key, &fdf);
-	mlx_hook(fdf.r.win, 17, 0, handle_close, &fdf);
-	mlx_loop(fdf.r.mlx);
+	renderer_push_img_to_win(&fdf.r);
+	renderer_run(&fdf.r, &fdf, handle_key, handle_close);
 	return (0);
 }
