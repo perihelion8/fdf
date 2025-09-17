@@ -1,14 +1,4 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: abazzoun <abazzoun@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/06/05 17:15:16 by abazzoun          #+#    #+#              #
-#    Updated: 2025/09/14 11:33:10 by abazzoun         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+.PHONY: all clean fclean re
 
 NAME		:=	libft.a
 
@@ -16,8 +6,6 @@ CC      	:=	cc
 CFLAGS		:= 	-Wall -Wextra -Werror
 AR      	:=	ar rcs
 RM      	:= 	rm -f
-
-OBJ_DIR		:= 	obj
 
 SRC_LIBFT	:=	ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c \
 				ft_isascii.c ft_isdigit.c ft_isprint.c ft_itoa.c ft_memchr.c \
@@ -27,27 +15,21 @@ SRC_LIBFT	:=	ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c \
 				ft_strlen.c ft_strmapi.c ft_strncmp.c ft_strnstr.c ft_strrchr.c \
 				ft_strtrim.c ft_substr.c ft_tolower.c ft_toupper.c
 
-SRC			:=	$(SRC_LIBFT)
-OBJ			:=	$(SRC:%.c=$(OBJ_DIR)/%.o)
+SRCS		:=	$(SRC_LIBFT)
+OBJS		:=	$(SRCS:%.c=%.o)
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
+$(NAME): $(OBJS)
 	@ar rcs $@ $^
 
-$(OBJ_DIR)/%.o: %.c | $(OBJ_DIR)
-	@mkdir -p $(dir $@)
-		$(CC) $(CFLAGS) -c $< -o $@
-
-$(OBJ_DIR):
-	@mkdir -p $(OBJ_DIR)
-
 clean:
-	rm -rf $(OBJ_DIR)
+	rm -rf $(OBJS)
 
 fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
-
-.PHONY: all clean fclean re

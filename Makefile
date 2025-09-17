@@ -1,51 +1,60 @@
-NAME		:=	fdf
+.PHONY: all clean fclean re
 
-CC			:=	cc
-CFLAGS		:=	-Wall -Werror -Wextra
+CC 			:= cc
+CFLAGS		:= -Wall -Wextra -Werror
+RM 			:= rm -f
 
-OBJ_DIR		:=	obj
+NAME 		:= fdf
+
+SRC_DIR		:= src
+OBJ_DIR		:= build
+
+SRCS 		:= $(wildcard $(SRC_DIR)/*.c $(SRC_DIR)/*/*.c)
+OBJS 		:= $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRCS))
+
+GREEN 		:= \033[0;32m
+RESET 		:= \033[0m
+
 LIBFT_DIR	:=	libft
-GNL_DIR		:=	get_next_line
 MLX_DIR		:=	mlx_linux
-
-SRC      	:=	get_next_line/get_next_line.c get_next_line/get_next_line_utils.c \
-				list.c list_grid.c list_utils.c renderer.c\
-				main.c parser.c project_iso.c draw.c hooks.c xmalloc.c grid_print.c
-OBJ      	:=	$(SRC:%.c=$(OBJ_DIR)/%.o)
 
 LIBFT		:=	$(LIBFT_DIR)/libft.a
 MLX			:=	$(MLX_DIR)/libmlx_Linux.a
 
-INCLUDES	:=	-I. -I$(LIBFT_DIR) -I$(MLX_DIR) -I$(GNL_DIR)
+INCLUDES	:=	-I. -I$(LIBFT_DIR) -I$(MLX_DIR)
 
 LDFLAGS  	:=	-L$(LIBFT_DIR) -lft \
 				-L$(MLX_DIR) -lmlx_Linux \
 				-L/usr/lib -lXext -lX11 -lm -lz
 
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+	@mkdir -p $(dir $@)
+	@echo "$(GREEN)Compiling $<...$(RESET)"
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+
 all: $(NAME)
 
-$(NAME): $(OBJ) $(LIBFT) $(MLX)
-		$(CC) $(OBJ) $(LDFLAGS) -o $@
-
-$(OBJ_DIR)/%.o: %.c fdf.h
-		mkdir -p $(dir $@)
-		$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+$(NAME): $(OBJS) $(LIBFT) $(MLX)
+	@echo "$(GREEN)Linking executable...$(RESET)"
+	$(CC) $(CFLAGS) $(OBJS) $(LDFLAGS) -o $(NAME)
 
 $(LIBFT):
-		$(MAKE) -C $(LIBFT_DIR)
+	@echo "$(GREEN)Building libft...$(RESET)"
+	$(MAKE) -C $(LIBFT_DIR)
 
 $(MLX):
-		$(MAKE) -C $(MLX_DIR)
+	@echo "$(GREEN)Building mlx...$(RESET)"
+	$(MAKE) -C $(MLX_DIR)
 
 clean:
-		$(MAKE) -C $(LIBFT_DIR) clean
-		$(MAKE) -C $(MLX_DIR) clean
-		rm -rf $(OBJ_DIR)
+	@echo "$(GREEN)Cleaning object files...$(RESET)"
+	$(MAKE) -C $(LIBFT_DIR) clean
+	$(MAKE) -C $(MLX_DIR) clean
+	$(RM) -r $(OBJ_DIR)
 
 fclean: clean
-		$(MAKE) -C $(LIBFT_DIR) fclean
-		rm -f $(NAME)
+	@echo "$(GREEN)Removing executable...$(RESET)"
+	$(MAKE) -C $(LIBFT_DIR) fclean
+	$(RM) $(NAME)
 
 re: fclean all
-
-.PHONY: all clean fclean re

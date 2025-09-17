@@ -6,7 +6,7 @@
 /*   By: abazzoun <abazzoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/31 14:21:28 by a                 #+#    #+#             */
-/*   Updated: 2025/09/12 23:12:54 by abazzoun         ###   ########.fr       */
+/*   Updated: 2025/09/17 13:56:32 by abazzoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static char	**split_create(const char *s, char c)
 {
 	char	**split;
 	size_t	size;
-	t_byte	in_word;
+	int		in_word;
 
 	if (s == NULL)
 		return (NULL);

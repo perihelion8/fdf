@@ -6,7 +6,7 @@
 /*   By: abazzoun <abazzoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 22:36:02 by abazzoun          #+#    #+#             */
-/*   Updated: 2025/09/14 21:00:42 by abazzoun         ###   ########.fr       */
+/*   Updated: 2025/09/17 13:00:57 by abazzoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	init_s_d(t_point2d p0, t_point2d p1, int *d, int *s)
 		s[1] = -1;
 }
 
-static void	draw_line(t_renderer *r, t_point2d p0, t_point2d p1)
+static void	draw_line(t_point2d p0, t_point2d p1, t_renderer *r)
 {
 	int	d[2];
 	int	s[2];
@@ -53,7 +53,7 @@ static void	draw_line(t_renderer *r, t_point2d p0, t_point2d p1)
 	}
 }
 
-void	draw_grid(t_renderer *r, t_grid *grid, t_props props)
+void	draw_grid(t_grid *grid, t_props *props, t_renderer *r)
 {
 	t_point2d	p[2];
 	size_t		i;
@@ -69,12 +69,12 @@ void	draw_grid(t_renderer *r, t_grid *grid, t_props props)
 			if (j + 1 < grid->width)
 			{
 				p[1] = project_iso(j + 1, i, grid->cells[i][j + 1], props);
-				draw_line(r, p[0], p[1]);
+				draw_line(p[0], p[1], r);
 			}
 			if (i + 1 < grid->height)
 			{
 				p[1] = project_iso(j, i + 1, grid->cells[i + 1][j], props);
-				draw_line(r, p[0], p[1]);
+				draw_line(p[0], p[1], r);
 			}
 			j++;
 		}

@@ -6,12 +6,11 @@
 /*   By: abazzoun <abazzoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 08:33:54 by abazzoun          #+#    #+#             */
-/*   Updated: 2025/09/14 12:01:41 by abazzoun         ###   ########.fr       */
+/*   Updated: 2025/09/17 19:59:05 by abazzoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include "list_internal.h"
+#include "list.h"
 
 static t_node	*list_node_new(char *str)
 {
@@ -52,6 +51,7 @@ void	list_destroy(t_list *lst)
 		lst->head = lst->head->next;
 		free(tmp);
 	}
+	free(lst);
 }
 
 size_t	list_len(t_list *lst)

@@ -6,17 +6,17 @@
 /*   By: abazzoun <abazzoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 12:27:35 by abazzoun          #+#    #+#             */
-/*   Updated: 2025/06/23 16:47:30 by abazzoun         ###   ########.fr       */
+/*   Updated: 2025/09/17 06:27:46 by abazzoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_internal.h"
 
-t_uint	ft_gnl_strlen(const char *s)
+t_uint	gnl_strlen(const char *s)
 {
 	t_uint	i;
 
-	if (s == NULL)
+	if (!s)
 		return (0);
 	i = 0;
 	while (*s)
@@ -27,13 +27,13 @@ t_uint	ft_gnl_strlen(const char *s)
 	return (i);
 }
 
-char	*ft_gnl_substr(const char *s, t_uint start_index, t_uint sub_len)
+char	*gnl_substr(const char *s, t_uint start_index, t_uint sub_len)
 {
 	char	*sub;
 	char	*ptr;
 
 	sub = (char *)malloc(sizeof(*sub) * (sub_len + 1));
-	if (sub == NULL)
+	if (!sub)
 		return (NULL);
 	ptr = sub;
 	s += start_index;
@@ -43,11 +43,11 @@ char	*ft_gnl_substr(const char *s, t_uint start_index, t_uint sub_len)
 	return (sub);
 }
 
-int	ft_gnl_char_index(char *str, char c)
+int	gnl_char_index(char *str, char c)
 {
 	int	i;
 
-	if (str == NULL)
+	if (!str)
 		return (-1);
 	i = 0;
 	while (*str)
@@ -60,32 +60,32 @@ int	ft_gnl_char_index(char *str, char c)
 	return (-1);
 }
 
-char	*ft_gnl_str_append(char *dst, const char *src)
+char	*gnl_append(char *dst, const char *src)
 {
-	char	*append;
-	char	*append_start;
-	char	*dst_start;
-	int		dst_len;
-	int		src_len;
+	char	*join;
+	char	*joinp;
+	char	*dstp;
+	int		dstlen;
+	int		srclen;
 
-	dst_len = ft_gnl_strlen(dst);
-	src_len = ft_gnl_strlen(src);
-	append = (char *)malloc(sizeof(*append) * (dst_len + src_len + 1));
-	if (append == NULL)
+	dstlen = gnl_strlen(dst);
+	srclen = gnl_strlen(src);
+	join = (char *)malloc(sizeof(*join) * (dstlen + srclen + 1));
+	if (!join)
 		return (NULL);
-	append_start = append;
-	dst_start = dst;
-	while (dst_len--)
-		*append++ = *dst++;
-	while (src_len--)
-		*append++ = *src++;
-	*append = '\0';
-	if (dst_start != NULL)
-		free(dst_start);
-	return (append_start);
+	joinp = join;
+	dstp = dst;
+	while (dstlen--)
+		*joinp++ = *dstp++;
+	while (srclen--)
+		*joinp++ = *src++;
+	*joinp = '\0';
+	if (dst)
+		free(dst);
+	return (join);
 }
 
-char	*ft_gnl_line_pop(char **repo)
+char	*gnl_pop(char **repo)
 {
 	char	*str;
 	char	*line;
@@ -94,15 +94,15 @@ char	*ft_gnl_line_pop(char **repo)
 	int		len;
 
 	str = *repo;
-	len = ft_gnl_strlen(str);
-	index = ft_gnl_char_index(str, '\n');
+	len = gnl_strlen(str);
+	index = gnl_char_index(str, '\n');
 	if (index == -1)
 		index = len - 1;
-	line = ft_gnl_substr(str, 0, index + 1);
-	if (line == NULL)
+	line = gnl_substr(str, 0, index + 1);
+	if (!line)
 		return (NULL);
-	rest = ft_gnl_substr(str, index + 1, len - index - 1);
-	if (rest == NULL)
+	rest = gnl_substr(str, index + 1, len - index - 1);
+	if (!rest)
 		return (NULL);
 	free(str);
 	*repo = rest;

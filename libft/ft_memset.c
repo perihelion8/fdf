@@ -6,7 +6,7 @@
 /*   By: abazzoun <abazzoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 11:36:31 by abazzoun          #+#    #+#             */
-/*   Updated: 2025/06/17 16:33:37 by abazzoun         ###   ########.fr       */
+/*   Updated: 2025/09/17 13:56:11 by abazzoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	*ft_memset(void *m, int c, size_t n)
 {
-	t_byte	*mb;
+	unsigned char	*mb;
 
-	mb = (t_byte *)m;
+	mb = m;
 	while (n--)
-		*mb++ = (t_byte) c;
+		*mb++ = (unsigned char)c;
 	return (m);
 }

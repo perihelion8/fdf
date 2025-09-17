@@ -1,34 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   grid_print.c                                       :+:      :+:    :+:   */
+/*   list.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abazzoun <abazzoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/14 10:50:30 by abazzoun          #+#    #+#             */
-/*   Updated: 2025/09/14 11:48:49 by abazzoun         ###   ########.fr       */
+/*   Created: 2025/09/14 06:25:38 by abazzoun          #+#    #+#             */
+/*   Updated: 2025/09/17 14:17:59 by abazzoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "list_internal.h"
+#ifndef LIST_H
+# define LIST_H
 
-void	grid_print(t_grid *grid)
+# include <stdlib.h>
+
+typedef struct s_node
 {
-	size_t	i;
-	size_t	j;
-	t_cell	cell;
+	char			*str;
+	struct s_node	*next;
+}	t_node;
 
-	i = 0;
-	while (i < grid->height)
-	{
-		j = 0;
-		while (j < grid->width)
-		{
-			cell = grid->cells[i][j];
-			printf("%d ", cell.z);
-			j++;
-		}
-		printf("\n");
-		i++;
-	}
-}
+typedef struct s_list
+{
+	t_node	*head;
+	t_node	*tail;
+	size_t	len;
+}	t_list;
+
+t_list	*list_create(void);
+void	list_destroy(t_list *lst);
+int		list_addback(t_list *lst, char *str);
+size_t	list_len(t_list *lst);
+
+#endif

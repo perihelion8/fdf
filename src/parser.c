@@ -6,7 +6,7 @@
 /*   By: abazzoun <abazzoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 09:19:59 by abazzoun          #+#    #+#             */
-/*   Updated: 2025/09/14 11:40:16 by abazzoun         ###   ########.fr       */
+/*   Updated: 2025/09/17 14:17:39 by abazzoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_grid	*parse_fdf(const char *file_name)
 		perror("open");
 		exit(EXIT_FAILURE);
 	}
-	lines = list_create();	
+	lines = list_create();
 	while (list_addback(lines, get_next_line(fd)) != -1)
 		;
 	close(fd);
@@ -33,7 +33,7 @@ t_grid	*parse_fdf(const char *file_name)
 		list_destroy(lines);
 		exit(EXIT_FAILURE);
 	}
-	grid = grid_create(lines);
+	grid = lines_to_grid(lines);
 	list_destroy(lines);
 	return (grid);
 }

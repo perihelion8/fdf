@@ -1,29 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   list_grid.c                                        :+:      :+:    :+:   */
+/*   grid.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abazzoun <abazzoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/14 08:59:52 by abazzoun          #+#    #+#             */
-/*   Updated: 2025/09/14 14:47:39 by abazzoun         ###   ########.fr       */
+/*   Created: 2025/09/16 22:28:22 by abazzoun          #+#    #+#             */
+/*   Updated: 2025/09/17 18:46:59 by abazzoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "list_internal.h"
-#include "libft.h"
+#include "fdf.h"
 
-static size_t	grid_width(char *line)
+static t_grid	*grid_new(t_list *lines)
 {
+	t_grid	*grid;
 	size_t	i;
 	char	**split;
 
-	split = ft_split(line, ' ');
+	split = ft_split(lines->head->str, ' ');
 	i = 0;
 	while (split[i])
 		i++;
 	free_split(split);
-	return (i);
+	grid = xmalloc(sizeof(*grid));
+	grid->cells = xmalloc(sizeof(t_cell *) * i);
+	grid->width = i;
+	grid->height = list_len(lines);
+	return (grid);
 }
 
 static t_cell	cell_new(char *str)
@@ -36,62 +40,35 @@ static t_cell	cell_new(char *str)
 	if (commaptr)
 		cell.color = hextoi(commaptr + 1);
 	else
-		cell.color = 0x0000FF;
+		cell.color = 0xFFFFFF;
 	return (cell);
 }
 
-static void	fill_grid(t_grid *grid, t_list *lines)
+t_grid	*lines_to_grid(t_list *lines)
 {
 	t_node	*node;
+	t_grid	*grid;
 	char	**split;
 	size_t	i;
 	size_t	j;
-	
+
+	grid = grid_new(lines);
 	node = lines->head;
 	i = 0;
-	while (node)
+	while (i < grid->height)
 	{
-		split = ft_split(node->str, ' '); 
+		grid->cells[i] = xmalloc(sizeof(t_cell) * grid->width);
+		split = ft_split(node->str, ' ');
 		j = 0;
 		while (split[j])
 		{
 			grid->cells[i][j] = cell_new(split[j]);
 			j++;
 		}
-		i++;
-		node = node->next;
 		free_split(split);
-	}
-}
-
-t_grid	*grid_create(t_list *lines)
-{
-	t_grid	*grid;
-	size_t	i;
-
-	grid = malloc(sizeof(t_grid));
-	if (!grid)
-		return (NULL);
-	grid->height = list_len(lines);
-	grid->width = grid_width(lines->head->str);
-	grid->cells = malloc(sizeof(t_cell *) * grid->height);
-	if (!grid->cells)
-	{
-		grid_destroy(grid);
-		return (NULL);
-	}
-	i = 0;
-	while (i < grid->height)
-	{
-		grid->cells[i] = malloc(sizeof(t_cell) * grid->width);
-		if (!grid->cells[i])
-		{
-			grid_destroy(grid);
-			return (NULL);
-		}
+		node = node->next;
 		i++;
 	}
-	fill_grid(grid, lines);
 	return (grid);
 }
 

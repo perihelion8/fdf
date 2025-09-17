@@ -6,7 +6,7 @@
 /*   By: abazzoun <abazzoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 12:58:42 by abazzoun          #+#    #+#             */
-/*   Updated: 2025/06/17 16:34:05 by abazzoun         ###   ########.fr       */
+/*   Updated: 2025/09/17 13:54:15 by abazzoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	const t_byte	*srcb;
-	t_byte			*dstb;
+	const unsigned char	*srcb;
+	unsigned char		*dstb;
 
-	srcb = (const t_byte *) src;
-	dstb = (t_byte *) dst;
+	srcb = (const unsigned char *) src;
+	dstb = (unsigned char *) dst;
 	while (n--)
 		*dstb++ = *srcb++;
 	return (dst);
