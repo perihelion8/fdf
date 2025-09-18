@@ -6,7 +6,7 @@
 /*   By: abazzoun <abazzoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 22:41:32 by abazzoun          #+#    #+#             */
-/*   Updated: 2025/09/17 20:04:33 by abazzoun         ###   ########.fr       */
+/*   Updated: 2025/09/17 23:46:24 by abazzoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,11 @@ int	handle_key(int keycode, void *param)
 	vars = param;
 	control_key(keycode, vars->props);
 	if (keycode == 65307)
-		handle_close(vars);
+		handle_close(param);
+	else if (keycode == 'z')
+		vars->props->scale_z += 0.1;
+	else if (keycode == 'x')
+		vars->props->scale_z -= 0.1;
 	img = vars->r->img;
 	ft_memset(img.addr, 0, img.line_len * vars->r->height);
 	draw_grid(vars->grid, vars->props, vars->r);
@@ -63,5 +67,5 @@ int	handle_close(void *param)
 	vars = param;
 	grid_destroy(vars->grid);
 	renderer_destroy(vars->r);
-	exit(0);
+	exit(EXIT_SUCCESS);
 }

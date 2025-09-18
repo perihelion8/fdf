@@ -6,7 +6,7 @@
 /*   By: abazzoun <abazzoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 12:16:56 by abazzoun          #+#    #+#             */
-/*   Updated: 2025/09/17 19:41:38 by abazzoun         ###   ########.fr       */
+/*   Updated: 2025/09/17 22:52:24 by abazzoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,6 @@ void	renderer_destroy(t_renderer *r)
 {
 	mlx_destroy_image(r->mlx, r->img.img);
 	mlx_destroy_window(r->mlx, r->win);
+	mlx_destroy_display(r->mlx);
+	free(r->mlx);
 }

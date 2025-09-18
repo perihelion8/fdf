@@ -6,7 +6,7 @@
 /*   By: abazzoun <abazzoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 12:50:54 by abazzoun          #+#    #+#             */
-/*   Updated: 2025/09/16 22:38:56 by abazzoun         ###   ########.fr       */
+/*   Updated: 2025/09/18 05:36:02 by abazzoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdint.h>
+# include <limit.h>
 
 typedef unsigned int	t_uint;
 
@@ -23,9 +24,9 @@ char		*ft_strdup(const char *s);
 char		*ft_strchr(const char *s, int c);
 char		*ft_strrchr(const char *s, int c);
 char		*ft_strnstr(const char *big, const char *little, size_t n);
-size_t	ft_strlen(const char *str);
-size_t	ft_strlcpy(char *dst, const char *src, size_t size);
-size_t	ft_strlcat(char *dst, const char *src, size_t size);
+size_t		ft_strlen(const char *str);
+size_t		ft_strlcpy(char *dst, const char *src, size_t size);
+size_t		ft_strlcat(char *dst, const char *src, size_t size);
 int			ft_strncmp(const char *s1, const char *s2, size_t n);
 int			ft_toupper(int c);
 int			ft_tolower(int c);

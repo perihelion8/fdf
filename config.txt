@@ -1,0 +1,42 @@
+" Enable line numbers
+set number
+set relativenumber
+
+" Show matching parentheses
+set showmatch
+
+" Always enable truecolor
+if has("termguicolors")
+    set termguicolors
+endif
+
+" Optional: override t_Co (Vim color capability)
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+ 
+" Enable syntax highlighting
+syntax on
+
+call plug#begin('~/.vim/plugged')
+	Plug 'sheerun/vim-polyglot'
+	Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+	Plug 'junegunn/fzf.vim'
+	Plug 'morhetz/gruvbox'
+	Plug 'sainnhe/gruvbox-material'
+	Plug 'joshdick/onedark.vim'
+	Plug 'preservim/nerdtree'
+	Plug 'jiangmiao/auto-pairs'
+call plug#end()
+
+" Set C-style indentation
+filetype plugin indent on
+
+" enable per-project .vimrc files
+set exrc
+set secure
+
+colorscheme onedark
+colorscheme gruvbox-material
+
+let g:user42 = 'abazzoun'
+let g:mail42 = 'abazzoun@student.42.fr'

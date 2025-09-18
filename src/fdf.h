@@ -6,7 +6,7 @@
 /*   By: abazzoun <abazzoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 14:03:08 by abazzoun          #+#    #+#             */
-/*   Updated: 2025/09/17 13:28:23 by abazzoun         ###   ########.fr       */
+/*   Updated: 2025/09/17 23:44:30 by abazzoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <stddef.h>
 # include <unistd.h>
 # include <math.h>
+# include <limits.h>
 
 # include "libft.h"
 # include "get_next_line/get_next_line.h"
@@ -61,6 +62,7 @@ typedef struct s_props
 	int		offset_x;
 	int		offset_y;
 	int		scale;
+	double	scale_z;
 	double	rot_x;
 	double	rot_y;
 	double	rot_z;
@@ -80,5 +82,6 @@ t_point2d	project_iso(int x, int y, t_cell cell, t_props *props);
 void		draw_grid(t_grid *grid, t_props *props, t_renderer *r);
 int			handle_key(int keycode, void *param);
 int			handle_close(void *param);
+t_point2d	bounding_box(t_grid *grid, t_props *props);
 
 #endif

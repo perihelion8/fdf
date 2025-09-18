@@ -6,7 +6,7 @@
 /*   By: abazzoun <abazzoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 22:37:44 by abazzoun          #+#    #+#             */
-/*   Updated: 2025/09/17 19:39:23 by abazzoun         ###   ########.fr       */
+/*   Updated: 2025/09/17 23:44:53 by abazzoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,19 @@
 
 static t_props	props_init(void)
 {
-	t_props	props;
+	t_props		props;
 
 	props.scale = 10;
+	props.scale_z = 0.1;
 	props.rot_x = 0;
 	props.rot_y = 0;
 	props.rot_z = 0;
-	props.offset_x = 0;
-	props.offset_y = 0;
+	props.offset_x = FDF_WIDTH/2;
+	props.offset_y = FDF_HEIGHT/2;
 	return (props);
 }
 
-static t_vars	vars_create(t_grid *grid, t_props *props, t_renderer *r)
+static t_vars	vars_init(t_grid *grid, t_props *props, t_renderer *r)
 {
 	t_vars	vars;
 
@@ -48,7 +49,7 @@ int	main(int argc, char *argv[])
 	props = props_init();
 	r = renderer_create(FDF_WIDTH, FDF_HEIGHT);
 	draw_grid(grid, &props, &r);
-	vars = vars_create(grid, &props, &r);
+	vars = vars_init(grid, &props, &r);
 	renderer_run(&r, &vars, handle_key, handle_close);
 	return (0);
 }
