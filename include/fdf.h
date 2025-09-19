@@ -6,7 +6,7 @@
 /*   By: abazzoun <abazzoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 14:03:08 by abazzoun          #+#    #+#             */
-/*   Updated: 2025/09/19 12:33:37 by abazzoun         ###   ########.fr       */
+/*   Updated: 2025/09/19 12:47:53 by abazzoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct s_bresenham
 {
 	int	dx;
 	int	dy;
-	int sx;
+	int	sx;
 	int	sy;
 	int	e;
 	int	e2;
