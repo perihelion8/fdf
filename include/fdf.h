@@ -6,18 +6,17 @@
 /*   By: abazzoun <abazzoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 14:03:08 by abazzoun          #+#    #+#             */
-/*   Updated: 2025/09/19 03:29:25 by abazzoun         ###   ########.fr       */
+/*   Updated: 2025/09/19 12:33:37 by abazzoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 
-# define FDF_HEIGHT 900
-# define FDF_WIDTH 900
+# define FDF_WIDTH 800
+# define FDF_HEIGHT 600
 
 # include <fcntl.h>
-# include <stdbool.h>
 # include <stdlib.h>
 # include <stddef.h>
 # include <unistd.h>
@@ -28,6 +27,16 @@
 # include "utils.h"
 # include "list.h"
 # include "renderer.h"
+
+typedef struct s_bresenham
+{
+	int	dx;
+	int	dy;
+	int sx;
+	int	sy;
+	int	e;
+	int	e2;
+}	t_bresenham;
 
 typedef struct s_cell
 {
@@ -78,6 +87,7 @@ t_grid		*lines_to_grid(t_list *lines);
 void		grid_destroy(t_grid *grid);
 t_grid		*parse_fdf(const char *file_name);
 t_point2d	project_iso(int x, int y, t_cell cell, t_props *props);
+void		line_bresenham(t_point2d p0, t_point2d p1, t_renderer *r);
 void		draw_grid(t_grid *grid, t_props *props, t_renderer *r);
 int			handle_key(int keycode, void *param);
 int			handle_close(void *param);

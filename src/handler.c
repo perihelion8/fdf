@@ -6,7 +6,7 @@
 /*   By: abazzoun <abazzoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 22:41:32 by abazzoun          #+#    #+#             */
-/*   Updated: 2025/09/17 23:46:24 by abazzoun         ###   ########.fr       */
+/*   Updated: 2025/09/19 04:09:56 by abazzoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@ int	handle_key(int keycode, void *param)
 	control_key(keycode, vars->props);
 	if (keycode == 65307)
 		handle_close(param);
-	else if (keycode == 'z')
+	else if (keycode == 'z' && vars->props->scale_z < 1)
 		vars->props->scale_z += 0.1;
-	else if (keycode == 'x')
+	else if (keycode == 'x' && vars->props->scale_z > -1)
 		vars->props->scale_z -= 0.1;
 	img = vars->r->img;
 	ft_memset(img.addr, 0, img.line_len * vars->r->height);
