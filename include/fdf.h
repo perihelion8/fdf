@@ -6,7 +6,7 @@
 /*   By: abazzoun <abazzoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 14:03:08 by abazzoun          #+#    #+#             */
-/*   Updated: 2025/09/17 23:44:30 by abazzoun         ###   ########.fr       */
+/*   Updated: 2025/09/19 03:29:25 by abazzoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,9 @@
 # include <stddef.h>
 # include <unistd.h>
 # include <math.h>
-# include <limits.h>
 
 # include "libft.h"
-# include "get_next_line/get_next_line.h"
+# include "get_next_line.h"
 # include "utils.h"
 # include "list.h"
 # include "renderer.h"

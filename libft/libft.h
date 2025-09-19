@@ -6,7 +6,7 @@
 /*   By: abazzoun <abazzoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 12:50:54 by abazzoun          #+#    #+#             */
-/*   Updated: 2025/09/18 05:36:02 by abazzoun         ###   ########.fr       */
+/*   Updated: 2025/09/19 03:25:11 by abazzoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdint.h>
-# include <limit.h>
 
 typedef unsigned int	t_uint;
 

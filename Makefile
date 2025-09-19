@@ -21,7 +21,7 @@ MLX_DIR		:=	mlx_linux
 LIBFT		:=	$(LIBFT_DIR)/libft.a
 MLX			:=	$(MLX_DIR)/libmlx_Linux.a
 
-INCLUDES	:=	-I. -I$(LIBFT_DIR) -I$(MLX_DIR)
+INCLUDES	:=	-Iinclude -I$(LIBFT_DIR) -I$(MLX_DIR)
 
 LDFLAGS  	:=	-L$(LIBFT_DIR) -lft \
 				-L$(MLX_DIR) -lmlx_Linux \
