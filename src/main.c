@@ -6,7 +6,7 @@
 /*   By: abazzoun <abazzoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 22:37:44 by abazzoun          #+#    #+#             */
-/*   Updated: 2025/09/17 23:44:53 by abazzoun         ###   ########.fr       */
+/*   Updated: 2025/09/19 03:47:41 by abazzoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ static t_props	props_init(void)
 	props.rot_x = 0;
 	props.rot_y = 0;
 	props.rot_z = 0;
-	props.offset_x = FDF_WIDTH/2;
-	props.offset_y = FDF_HEIGHT/2;
+	props.offset_x = FDF_WIDTH / 2;
+	props.offset_y = FDF_HEIGHT / 2;
 	return (props);
 }
 
