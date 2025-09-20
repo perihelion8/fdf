@@ -6,7 +6,7 @@
 /*   By: abazzoun <abazzoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 15:48:04 by abazzoun          #+#    #+#             */
-/*   Updated: 2025/09/17 11:17:35 by abazzoun         ###   ########.fr       */
+/*   Updated: 2025/09/20 18:42:06 by abazzoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,36 +29,25 @@ static int	index_hexbase(char c)
 			return (i);
 		i++;
 	}
-	return (i);
+	return (-1);
 }
 
 int	hextoi(const char *str)
 {
 	int	n;
+	int	digit;
 
 	n = 0;
 	str += 2;
 	while (*str)
 	{
-		n = n * 16 + index_hexbase(*str);
+		digit = index_hexbase(*str);
+		if (digit == -1)
+			break ;
+		n = n * 16 + digit;
 		str++;
 	}
 	return (n);
-}
-
-void	free_split(char **split)
-{
-	size_t	i;
-
-	if (!split)
-		return ;
-	i = 0;
-	while (split[i])
-	{
-		free(split[i]);
-		i++;
-	}
-	free(split);
 }
 
 void	*xmalloc(size_t	size)

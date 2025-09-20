@@ -34,7 +34,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 
 all: $(NAME)
 
-$(NAME): $(OBJS) $(LIBFT) $(MLX)
+$(NAME): $(MLX) $(OBJS) $(LIBFT)
 	@echo "$(GREEN)Linking executable...$(RESET)"
 	$(CC) $(CFLAGS) $(OBJS) $(LDFLAGS) -o $(NAME)
 

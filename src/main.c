@@ -6,7 +6,7 @@
 /*   By: abazzoun <abazzoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 22:37:44 by abazzoun          #+#    #+#             */
-/*   Updated: 2025/09/19 03:47:41 by abazzoun         ###   ########.fr       */
+/*   Updated: 2025/09/20 18:52:52 by abazzoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	main(int argc, char *argv[])
 
 	if (argc != 2)
 		return (0);
-	grid = parse_fdf(argv[1]);
+	grid = parser_fdf_file(argv[1]);
 	props = props_init();
 	r = renderer_create(FDF_WIDTH, FDF_HEIGHT);
 	draw_grid(grid, &props, &r);

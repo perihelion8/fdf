@@ -6,7 +6,7 @@
 /*   By: abazzoun <abazzoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 14:03:08 by abazzoun          #+#    #+#             */
-/*   Updated: 2025/09/19 12:47:53 by abazzoun         ###   ########.fr       */
+/*   Updated: 2025/09/20 18:51:26 by abazzoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,9 +83,8 @@ typedef struct s_vars
 	t_renderer	*r;
 }	t_vars;
 
-t_grid		*lines_to_grid(t_list *lines);
 void		grid_destroy(t_grid *grid);
-t_grid		*parse_fdf(const char *file_name);
+t_grid		*parser_fdf_file(const char *file_name);
 t_point2d	project_iso(int x, int y, t_cell cell, t_props *props);
 void		line_bresenham(t_point2d p0, t_point2d p1, t_renderer *r);
 void		draw_grid(t_grid *grid, t_props *props, t_renderer *r);
