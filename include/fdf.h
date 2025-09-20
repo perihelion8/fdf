@@ -6,15 +6,15 @@
 /*   By: abazzoun <abazzoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 14:03:08 by abazzoun          #+#    #+#             */
-/*   Updated: 2025/09/20 22:35:38 by abazzoun         ###   ########.fr       */
+/*   Updated: 2025/09/21 02:22:39 by abazzoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 
-# define FDF_WIDTH 800
-# define FDF_HEIGHT 600
+# define SCREEN_W 1024
+# define SCREEN_H 768
 
 # include <fcntl.h>
 # include <stdlib.h>
@@ -53,9 +53,9 @@ typedef struct s_grid
 
 typedef struct s_point
 {
-	double	x;
-	double	y;
-	double	z;
+	float	x;
+	float	y;
+	float	z;
 }	t_point;
 
 typedef struct s_point2d
@@ -65,15 +65,25 @@ typedef struct s_point2d
 	int	color;
 }	t_point2d;
 
+typedef struct s_box
+{
+	int	x_max;
+	int	x_min;
+	int	y_max;
+	int	y_min;
+	int	z_max;
+	int	z_min;
+}	t_box;
+
 typedef struct s_props
 {
 	int		offset_x;
 	int		offset_y;
-	int		scale;
-	double	scale_z;
-	double	rot_x;
-	double	rot_y;
-	double	rot_z;
+	float	scale;
+	float	scale_z;
+	float	rot_x;
+	float	rot_y;
+	float	rot_z;
 }	t_props;
 
 typedef struct s_vars
@@ -91,6 +101,7 @@ t_grid		*parser_fdf_file(const char *file_name);
 t_point2d	project_iso(int x, int y, t_cell cell, t_props *props);
 void		line_bresenham(t_point2d p0, t_point2d p1, t_renderer *r);
 void		draw_grid(t_grid *grid, t_props *props, t_renderer *r);
+t_box		box_make(t_grid *grid, t_props *props);
 int			handle_key(int keycode, void *param);
 int			handle_close(void *param);
 t_point2d	bounding_box(t_grid *grid, t_props *props);
