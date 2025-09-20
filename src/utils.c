@@ -6,7 +6,7 @@
 /*   By: abazzoun <abazzoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 15:48:04 by abazzoun          #+#    #+#             */
-/*   Updated: 2025/09/20 18:42:06 by abazzoun         ###   ########.fr       */
+/*   Updated: 2025/09/20 22:35:11 by abazzoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,14 @@ int	hextoi(const char *str)
 		str++;
 	}
 	return (n);
+}
+
+int	try_free(void *ptr)
+{
+	if (!ptr)
+		return (0);
+	free(ptr);
+	return (1);
 }
 
 void	*xmalloc(size_t	size)

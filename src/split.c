@@ -1,24 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   split.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abazzoun <abazzoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/16 19:32:33 by abazzoun          #+#    #+#             */
-/*   Updated: 2025/09/20 22:36:00 by abazzoun         ###   ########.fr       */
+/*   Created: 2025/09/20 19:08:19 by abazzoun          #+#    #+#             */
+/*   Updated: 2025/09/20 22:41:17 by abazzoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#include "fdf.h"
 
-# include <stdlib.h>
-# include <stdio.h>
-# include "libft.h"
+char	**split_and_free_src(char *s, char c)
+{
+	char	**split;
 
-int		try_free(void *ptr);
-void	*xmalloc(size_t	size);
-int		hextoi(const char *str);
+	split = ft_split(s, c);
+	free(s);
+	return (split);
+}
 
-#endif
+size_t	split_len(char **split)
+{
+	size_t	i;
+
+	i = 0;
+	while (split[i])
+		i++;
+	return (i);
+}
+
+void	split_free(char **split)
+{
+	size_t	i;
+
+	if (!split)
+		return ;
+	i = 0;
+	while (split[i])
+	{
+		free(split[i]);
+		i++;
+	}
+	free(split);
+}

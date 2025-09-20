@@ -6,7 +6,7 @@
 /*   By: abazzoun <abazzoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 14:03:08 by abazzoun          #+#    #+#             */
-/*   Updated: 2025/09/20 18:51:26 by abazzoun         ###   ########.fr       */
+/*   Updated: 2025/09/20 22:35:38 by abazzoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,9 @@ typedef struct s_vars
 	t_renderer	*r;
 }	t_vars;
 
+char		**split_and_free_src(char *s, char c);
+size_t		split_len(char **split);
+void		split_free(char **split);
 void		grid_destroy(t_grid *grid);
 t_grid		*parser_fdf_file(const char *file_name);
 t_point2d	project_iso(int x, int y, t_cell cell, t_props *props);

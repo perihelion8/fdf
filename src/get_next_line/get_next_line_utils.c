@@ -6,7 +6,7 @@
 /*   By: abazzoun <abazzoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 12:27:35 by abazzoun          #+#    #+#             */
-/*   Updated: 2025/09/17 06:27:46 by abazzoun         ###   ########.fr       */
+/*   Updated: 2025/09/20 22:42:09 by abazzoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_uint	gnl_strlen(const char *s)
 {
 	t_uint	i;
 
-	if (!s)
+	if (s == NULL)
 		return (0);
 	i = 0;
 	while (*s)
@@ -33,7 +33,7 @@ char	*gnl_substr(const char *s, t_uint start_index, t_uint sub_len)
 	char	*ptr;
 
 	sub = (char *)malloc(sizeof(*sub) * (sub_len + 1));
-	if (!sub)
+	if (sub == NULL)
 		return (NULL);
 	ptr = sub;
 	s += start_index;
@@ -47,7 +47,7 @@ int	gnl_char_index(char *str, char c)
 {
 	int	i;
 
-	if (!str)
+	if (str == NULL)
 		return (-1);
 	i = 0;
 	while (*str)
@@ -62,27 +62,27 @@ int	gnl_char_index(char *str, char c)
 
 char	*gnl_append(char *dst, const char *src)
 {
-	char	*join;
-	char	*joinp;
-	char	*dstp;
-	int		dstlen;
-	int		srclen;
+	char	*append;
+	char	*append_start;
+	char	*dst_start;
+	int		dst_len;
+	int		src_len;
 
-	dstlen = gnl_strlen(dst);
-	srclen = gnl_strlen(src);
-	join = (char *)malloc(sizeof(*join) * (dstlen + srclen + 1));
-	if (!join)
+	dst_len = gnl_strlen(dst);
+	src_len = gnl_strlen(src);
+	append = (char *)malloc(sizeof(*append) * (dst_len + src_len + 1));
+	if (append == NULL)
 		return (NULL);
-	joinp = join;
-	dstp = dst;
-	while (dstlen--)
-		*joinp++ = *dstp++;
-	while (srclen--)
-		*joinp++ = *src++;
-	*joinp = '\0';
-	if (dst)
-		free(dst);
-	return (join);
+	append_start = append;
+	dst_start = dst;
+	while (dst_len--)
+		*append++ = *dst++;
+	while (src_len--)
+		*append++ = *src++;
+	*append = '\0';
+	if (dst_start != NULL)
+		free(dst_start);
+	return (append_start);
 }
 
 char	*gnl_pop(char **repo)
@@ -99,10 +99,10 @@ char	*gnl_pop(char **repo)
 	if (index == -1)
 		index = len - 1;
 	line = gnl_substr(str, 0, index + 1);
-	if (!line)
+	if (line == NULL)
 		return (NULL);
 	rest = gnl_substr(str, index + 1, len - index - 1);
-	if (!rest)
+	if (rest == NULL)
 		return (NULL);
 	free(str);
 	*repo = rest;

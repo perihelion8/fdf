@@ -6,7 +6,7 @@
 /*   By: abazzoun <abazzoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 21:19:46 by abazzoun          #+#    #+#             */
-/*   Updated: 2025/09/17 06:06:30 by abazzoun         ###   ########.fr       */
+/*   Updated: 2025/09/20 22:26:49 by abazzoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 # include <unistd.h>
 # include <stdlib.h>
 
-typedef unsigned char	t_byte;
 typedef unsigned int	t_uint;
 
 char	*gnl_append(char *dst, const char *src);
