@@ -6,7 +6,7 @@
 /*   By: abazzoun <abazzoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 22:37:44 by abazzoun          #+#    #+#             */
-/*   Updated: 2025/09/21 03:37:47 by abazzoun         ###   ########.fr       */
+/*   Updated: 2025/09/22 00:00:55 by abazzoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,27 @@
 
 static t_props	props_make(t_grid *grid)
 {
-	t_props		props;
-	t_box		box;
-	float		scale[2];
-	float		center[2];
+	t_props	props;
+	t_box	box;
+	float	scale[2];
+	float	center[2];
 
 	ft_memset(&props, 0, sizeof(t_props));
 	props.scale = 1;
 	props.scale_z = 1;
 	box = box_make(grid, &props);
+	props.z_max = box.z_max;
+	props.z_min = box.z_min;
 	scale[0] = SCREEN_W / (box.x_max - box.x_min);
 	scale[1] = SCREEN_H / (box.y_max - box.y_min);
 	if (scale[0] <= scale[1])
 		props.scale = scale[0] * 0.9;
 	else
 		props.scale = scale[1] * 0.9;
-	center[0] = (abs(box.x_max + box.x_min) / 2.0f) * props.scale;
-	center[1] = (abs(box.y_max + box.y_min) / 2.0f) * props.scale;
-	props.offset_x = (int)((SCREEN_W / 2.0f) - center[0]);
-	props.offset_y = (int)((SCREEN_H / 2.0f) - center[1]);
+	center[0] = (-1 *(box.x_max + box.x_min) / 2.0f);
+	center[1] = (box.y_max + box.y_min) / 2.0f;
+	props.offset_x = (int)((SCREEN_W / 2.0f) - center[0] * props.scale);
+	props.offset_y = (int)((SCREEN_H / 2.0f) - center[1] * props.scale);
 	return (props);
 }
 

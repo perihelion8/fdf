@@ -1,19 +1,16 @@
 .PHONY: all clean fclean re
 
+NAME 		:= fdf
+
 CC 			:= cc
 CFLAGS		:= -Wall -Wextra -Werror
-RM 			:= rm -f
-
-NAME 		:= fdf
+RM 			:= rm -rf
 
 SRC_DIR		:= src
 OBJ_DIR		:= build
 
 SRCS 		:= $(wildcard $(SRC_DIR)/*.c $(SRC_DIR)/*/*.c)
 OBJS 		:= $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRCS))
-
-GREEN 		:= \033[0;32m
-RESET 		:= \033[0m
 
 LIBFT_DIR	:=	libft
 MLX_DIR		:=	mlx_linux
@@ -29,31 +26,25 @@ LDFLAGS  	:=	-L$(LIBFT_DIR) -lft \
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(dir $@)
-	@echo "$(GREEN)Compiling $<...$(RESET)"
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 all: $(NAME)
 
-$(NAME): $(MLX) $(OBJS) $(LIBFT)
-	@echo "$(GREEN)Linking executable...$(RESET)"
+$(NAME): $(MLX) $(LIBFT) $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) $(LDFLAGS) -o $(NAME)
 
-$(LIBFT):
-	@echo "$(GREEN)Building libft...$(RESET)"
-	$(MAKE) -C $(LIBFT_DIR)
-
 $(MLX):
-	@echo "$(GREEN)Building mlx...$(RESET)"
 	$(MAKE) -C $(MLX_DIR)
 
+$(LIBFT):
+	$(MAKE) -C $(LIBFT_DIR)
+
 clean:
-	@echo "$(GREEN)Cleaning object files...$(RESET)"
 	$(MAKE) -C $(LIBFT_DIR) clean
 	$(MAKE) -C $(MLX_DIR) clean
-	$(RM) -r $(OBJ_DIR)
+	$(RM) $(OBJ_DIR)
 
 fclean: clean
-	@echo "$(GREEN)Removing executable...$(RESET)"
 	$(MAKE) -C $(LIBFT_DIR) fclean
 	$(RM) $(NAME)
 

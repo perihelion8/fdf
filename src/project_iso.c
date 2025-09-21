@@ -6,7 +6,7 @@
 /*   By: abazzoun <abazzoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/05 10:47:12 by abazzoun          #+#    #+#             */
-/*   Updated: 2025/09/21 03:30:48 by abazzoun         ###   ########.fr       */
+/*   Updated: 2025/09/21 23:47:42 by abazzoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static t_point	rotate_point(int x, int y, int z, t_props *props)
 	p = tmp;
 	tmp.x = p.x * cos(props->rot_y) + p.z * sin(props->rot_y);
 	tmp.z = -p.x * sin(props->rot_y) + p.z * cos(props->rot_y);
-	tmp.y = y;
+	tmp.y = p.y;
 	p = tmp;
 	tmp.x = p.x * cos(props->rot_z) - p.y * sin(props->rot_z);
 	tmp.y = p.x * sin(props->rot_z) + p.y * cos(props->rot_z);

@@ -6,7 +6,7 @@
 /*   By: abazzoun <abazzoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 14:03:08 by abazzoun          #+#    #+#             */
-/*   Updated: 2025/09/21 03:40:33 by abazzoun         ###   ########.fr       */
+/*   Updated: 2025/09/22 00:00:18 by abazzoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ typedef struct s_props
 {
 	int		offset_x;
 	int		offset_y;
+	int		z_max;
+	int		z_min;
 	float	scale;
 	float	scale_z;
 	float	rot_x;

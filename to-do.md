@@ -1,5 +1,5 @@
 ## case to show
 
 [x]	parser
-[ ]	centering
+[x]	centering
 [ ]	coloring
