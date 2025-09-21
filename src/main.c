@@ -6,7 +6,7 @@
 /*   By: abazzoun <abazzoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 22:37:44 by abazzoun          #+#    #+#             */
-/*   Updated: 2025/09/21 02:30:23 by abazzoun         ###   ########.fr       */
+/*   Updated: 2025/09/21 03:37:47 by abazzoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,10 @@ static t_props	props_make(t_grid *grid)
 		props.scale = scale[0] * 0.9;
 	else
 		props.scale = scale[1] * 0.9;
-	box = box_make(grid, &props);
-	center[0] = (box.x_max + box.x_min) / 2.0f;
-	center[1] = (box.y_max + box.y_min) / 2.0f;
-	props.offset_x = (int)roundf((SCREEN_W / 2.0f) - center[0]);
-	props.offset_y = (int)roundf((SCREEN_H / 2.0f) - center[1]);
+	center[0] = (abs(box.x_max + box.x_min) / 2.0f) * props.scale;
+	center[1] = (abs(box.y_max + box.y_min) / 2.0f) * props.scale;
+	props.offset_x = (int)((SCREEN_W / 2.0f) - center[0]);
+	props.offset_y = (int)((SCREEN_H / 2.0f) - center[1]);
 	return (props);
 }
 
