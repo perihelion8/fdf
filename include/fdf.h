@@ -6,22 +6,23 @@
 /*   By: abazzoun <abazzoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 14:03:08 by abazzoun          #+#    #+#             */
-/*   Updated: 2025/09/22 00:00:18 by abazzoun         ###   ########.fr       */
+/*   Updated: 2025/09/25 02:16:45 by abazzoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 
-# define SCREEN_W 1024
-# define SCREEN_H 768
+# define SCREEN_W		1024
+# define SCREEN_H		768
+# define MOUSE_LEFT		1
+# define MOUSE_RIGHT	3
 
 # include <fcntl.h>
 # include <stdlib.h>
 # include <stddef.h>
 # include <unistd.h>
 # include <math.h>
-
 # include "libft.h"
 # include "get_next_line.h"
 # include "utils.h"
@@ -77,15 +78,20 @@ typedef struct s_box
 
 typedef struct s_props
 {
-	int		offset_x;
-	int		offset_y;
+	int		center_x;
+	int		center_y;
 	int		z_max;
 	int		z_min;
+	int		offset_x;
+	int		offset_y;
 	float	scale;
 	float	scale_z;
 	float	rot_x;
 	float	rot_y;
 	float	rot_z;
+	int		last_mouse_x;
+	int		last_mouse_y;
+	int		mouse_button;
 }	t_props;
 
 typedef struct s_vars
@@ -106,6 +112,10 @@ void		draw_grid(t_grid *grid, t_props *props, t_renderer *r);
 t_box		box_make(t_grid *grid, t_props *props);
 int			handle_key(int keycode, void *param);
 int			handle_close(void *param);
+int			mouse_press(int button, int x, int y, t_props *props);
+int			mouse_release(int button, int x, int y, t_props *props);
+int			mouse_move(int x, int y, t_props *props);
+int			update(void *param);
 t_point2d	bounding_box(t_grid *grid, t_props *props);
 
 #endif

@@ -6,14 +6,25 @@
 /*   By: abazzoun <abazzoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 22:41:32 by abazzoun          #+#    #+#             */
-/*   Updated: 2025/09/19 04:09:56 by abazzoun         ###   ########.fr       */
+/*   Updated: 2025/09/25 02:37:26 by abazzoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static void	control_key(int keycode, t_props *props)
+int	handle_key(int keycode, void *param)
 {
+	t_props	*props;
+	t_vars	*vars;
+
+	vars = ((t_vars *)param);
+	props = vars->props;
+	if (keycode == 65307)
+		handle_close(param);
+	else if (keycode == 'z' && props->scale_z < 1)
+		props->scale_z += 0.1;
+	else if (keycode == 'x' && props->scale_z > -1)
+		props->scale_z -= 0.1;
 	if (keycode == 65362)
 		props->offset_y -= 10;
 	else if (keycode == 65364)
@@ -26,37 +37,47 @@ static void	control_key(int keycode, t_props *props)
 		props->scale += 1;
 	else if (keycode == 45)
 		props->scale -= 1;
-	else if (keycode == 'w')
-		props->rot_x -= 0.05;
-	else if (keycode == 's')
-		props->rot_x += 0.05;
-	else if (keycode == 'a')
-		props->rot_y -= 0.05;
-	else if (keycode == 'd')
-		props->rot_y += 0.05;
-	else if (keycode == 'q')
-		props->rot_z -= 0.05;
-	else if (keycode == 'e')
-		props->rot_z += 0.05;
+	return (0);
 }
 
-int	handle_key(int keycode, void *param)
+int	mouse_press(int button, int x, int y, t_props *props)
 {
-	t_vars	*vars;
-	t_img	img;
+	if (button == MOUSE_LEFT || button == MOUSE_RIGHT)
+	{
+		props->mouse_button = button;
+		props->last_mouse_x = x;
+		props->last_mouse_y = y;
+	}
+	return (0);
+}
 
-	vars = param;
-	control_key(keycode, vars->props);
-	if (keycode == 65307)
-		handle_close(param);
-	else if (keycode == 'z' && vars->props->scale_z < 1)
-		vars->props->scale_z += 0.1;
-	else if (keycode == 'x' && vars->props->scale_z > -1)
-		vars->props->scale_z -= 0.1;
-	img = vars->r->img;
-	ft_memset(img.addr, 0, img.line_len * vars->r->height);
-	draw_grid(vars->grid, vars->props, vars->r);
-	renderer_push_img_to_win(vars->r);
+int	mouse_release(int button, int x, int y, t_props *props)
+{
+	(void)x;
+	(void)y;
+	(void)button;		
+	props->mouse_button = 0;
+	return (0);
+}
+
+int	mouse_move(int x, int y, t_props *props)
+{
+	int		dx;
+	int		dy;
+
+	if (props->mouse_button == 0)
+		return (0);
+	dx = x - props->last_mouse_x;
+	dy = y - props->last_mouse_y;
+	if (props->mouse_button == MOUSE_LEFT)
+	{
+		props->rot_y += dx * 0.01f;
+		props->rot_x += dy * 0.01f;
+	}
+	else if (props->mouse_button == MOUSE_RIGHT)
+		props->rot_z += dx * 0.01f;
+	props->last_mouse_x = x;
+	props->last_mouse_y = y;
 	return (0);
 }
 

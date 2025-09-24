@@ -2,4 +2,5 @@
 
 [x]	parser
 [x]	centering
+[ ] mouse
 [ ]	coloring

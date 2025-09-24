@@ -6,11 +6,11 @@
 /*   By: abazzoun <abazzoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 12:16:56 by abazzoun          #+#    #+#             */
-/*   Updated: 2025/09/17 22:52:24 by abazzoun         ###   ########.fr       */
+/*   Updated: 2025/09/25 02:15:46 by abazzoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "renderer.h"
+#include "fdf.h"
 
 t_renderer	renderer_create(int width, int height)
 {
@@ -27,11 +27,20 @@ t_renderer	renderer_create(int width, int height)
 	return (r);
 }
 
-void	renderer_run(t_renderer *r, void *var, t_hook_k k, t_hook_c c)
+void	renderer_run(t_renderer *r, void *props, void *grid)
 {
-	renderer_push_img_to_win(r);
-	mlx_key_hook(r->win, k, var);
-	mlx_hook(r->win, 17, 0, c, var);
+	t_vars	var;
+
+	var.grid = grid;
+	var.props = props;
+	var.r = r;
+	renderer_push_img_to_win(&var);
+	mlx_key_hook(r->win, handle_key, &var);
+	mlx_hook(r->win, 4, 4, mouse_press, props);
+	mlx_hook(r->win, 5, 8, mouse_release, props);
+	mlx_hook(r->win, 6, 64, mouse_move, props);
+	mlx_hook(r->win, 17, 0L, handle_close, &var);
+	mlx_loop_hook(r->mlx, update, &var);
 	mlx_loop(r->mlx);
 }
 
@@ -47,8 +56,17 @@ void	renderer_put_pixel(t_renderer *r, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-void	renderer_push_img_to_win(t_renderer *r)
+void	renderer_push_img_to_win(void *param)
 {
+	t_vars		*vars;
+	t_renderer	*r;
+	t_img		img;
+
+	vars = param;
+	r = vars->r;
+	img = r->img;
+	ft_memset(img.addr, 0, img.line_len * r->height);
+	draw_grid(vars->grid, vars->props, vars->r);
 	mlx_put_image_to_window(r->mlx, r->win, r->img.img, 0, 0);
 }
 

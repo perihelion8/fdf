@@ -6,7 +6,7 @@
 /*   By: abazzoun <abazzoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 22:37:44 by abazzoun          #+#    #+#             */
-/*   Updated: 2025/09/22 00:00:55 by abazzoun         ###   ########.fr       */
+/*   Updated: 2025/09/25 02:46:19 by abazzoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,9 @@ static t_props	props_make(t_grid *grid)
 	center[1] = (box.y_max + box.y_min) / 2.0f;
 	props.offset_x = (int)((SCREEN_W / 2.0f) - center[0] * props.scale);
 	props.offset_y = (int)((SCREEN_H / 2.0f) - center[1] * props.scale);
+	props.center_x = grid->width / 2;
+	props.center_y = grid->height / 2;
 	return (props);
-}
-
-static t_vars	vars_make(t_grid *grid, t_props *props, t_renderer *r)
-{
-	t_vars	vars;
-
-	vars.grid = grid;
-	vars.props = props;
-	vars.r = r;
-	return (vars);
 }
 
 int	main(int argc, char *argv[])
@@ -53,15 +45,12 @@ int	main(int argc, char *argv[])
 	t_renderer	r;
 	t_grid		*grid;
 	t_props		props;
-	t_vars		vars;
 
 	if (argc != 2)
 		return (0);
 	grid = parser_fdf_file(argv[1]);
 	props = props_make(grid);
 	r = renderer_create(SCREEN_W, SCREEN_H);
-	draw_grid(grid, &props, &r);
-	vars = vars_make(grid, &props, &r);
-	renderer_run(&r, &vars, handle_key, handle_close);
+	renderer_run(&r, &props, grid);
 	return (0);
 }
