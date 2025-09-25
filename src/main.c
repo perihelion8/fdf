@@ -6,7 +6,7 @@
 /*   By: abazzoun <abazzoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 22:37:44 by abazzoun          #+#    #+#             */
-/*   Updated: 2025/09/25 02:46:19 by abazzoun         ###   ########.fr       */
+/*   Updated: 2025/09/25 09:51:34 by abazzoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ static t_props	props_make(t_grid *grid)
 	props.offset_y = (int)((SCREEN_H / 2.0f) - center[1] * props.scale);
 	props.center_x = grid->width / 2;
 	props.center_y = grid->height / 2;
+	props.redraw = 1;
 	return (props);
 }
 

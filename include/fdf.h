@@ -6,7 +6,7 @@
 /*   By: abazzoun <abazzoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/04 14:03:08 by abazzoun          #+#    #+#             */
-/*   Updated: 2025/09/25 02:16:45 by abazzoun         ###   ########.fr       */
+/*   Updated: 2025/09/25 09:44:15 by abazzoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ typedef struct s_box
 
 typedef struct s_props
 {
+	int		redraw;
 	int		center_x;
 	int		center_y;
 	int		z_max;

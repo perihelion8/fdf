@@ -6,7 +6,7 @@
 /*   By: abazzoun <abazzoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/14 12:16:56 by abazzoun          #+#    #+#             */
-/*   Updated: 2025/09/25 02:15:46 by abazzoun         ###   ########.fr       */
+/*   Updated: 2025/09/25 03:04:48 by abazzoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ void	renderer_run(t_renderer *r, void *props, void *grid)
 	var.grid = grid;
 	var.props = props;
 	var.r = r;
-	renderer_push_img_to_win(&var);
 	mlx_key_hook(r->win, handle_key, &var);
 	mlx_hook(r->win, 4, 4, mouse_press, props);
 	mlx_hook(r->win, 5, 8, mouse_release, props);
