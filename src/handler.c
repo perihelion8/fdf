@@ -6,7 +6,7 @@
 /*   By: abazzoun <abazzoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 22:41:32 by abazzoun          #+#    #+#             */
-/*   Updated: 2025/09/25 10:04:40 by abazzoun         ###   ########.fr       */
+/*   Updated: 2025/09/25 10:57:37 by abazzoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,15 @@
 int	handle_key(int keycode, void *param)
 {
 	t_props	*props;
-	t_vars	*vars;
 
-	vars = ((t_vars *)param);
-	props = vars->props;
+	props = ((t_vars *)param)->props;
 	if (keycode == 65307)
 		handle_close(param);
 	else if (keycode == 'z' && props->scale_z < 1)
 		props->scale_z += 0.1;
 	else if (keycode == 'x' && props->scale_z > -1)
 		props->scale_z -= 0.1;
-	if (keycode == 65362)
+	else if (keycode == 65362)
 		props->offset_y -= 20;
 	else if (keycode == 65364)
 		props->offset_y += 20;
@@ -45,6 +43,8 @@ int	handle_key(int keycode, void *param)
 
 int	mouse_press(int button, int x, int y, t_props *props)
 {
+	if (props->mouse_button)
+		return (0);
 	if (button == MOUSE_LEFT || button == MOUSE_RIGHT)
 	{
 		props->mouse_button = button;
@@ -65,8 +65,8 @@ int	mouse_release(int button, int x, int y, t_props *props)
 
 int	mouse_move(int x, int y, t_props *props)
 {
-	int		dx;
-	int		dy;
+	int	dx;
+	int	dy;
 
 	if (props->mouse_button == 0)
 		return (0);

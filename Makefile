@@ -1,16 +1,16 @@
 .PHONY: all clean fclean re
 
-NAME 		:= fdf
+NAME 		:=	fdf
 
-CC 			:= cc
-CFLAGS		:= -Wall -Wextra -Werror
-RM 			:= rm -rf
+CC 			:=	cc
+CFLAGS		:=	-Wall -Wextra -Werror
+RM 			:=	rm -rf
 
-SRC_DIR		:= src
-OBJ_DIR		:= build
+SRC_DIR		:=	src
+OBJ_DIR		:=	build
 
-SRCS 		:= $(wildcard $(SRC_DIR)/*.c $(SRC_DIR)/*/*.c)
-OBJS 		:= $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRCS))
+SRCS 		:=	$(wildcard $(SRC_DIR)/*.c $(SRC_DIR)/*/*.c)
+OBJS 		:=	$(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRCS))
 
 LIBFT_DIR	:=	libft
 MLX_DIR		:=	mlx_linux

@@ -6,21 +6,20 @@
 /*   By: abazzoun <abazzoun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 23:21:03 by abazzoun          #+#    #+#             */
-/*   Updated: 2025/09/21 03:40:13 by abazzoun         ###   ########.fr       */
+/*   Updated: 2025/09/25 22:44:32 by abazzoun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <limits.h>
 #include "fdf.h"
 
-static void	box_init(t_box *box)
+static void	box_init(t_box *box, int x0, int y0, t_cell cell0)
 {
-	box->x_max = INT_MIN;
-	box->x_min = INT_MAX;
-	box->y_max = INT_MIN;
-	box->y_min = INT_MAX;
-	box->z_max = INT_MIN;
-	box->z_min = INT_MAX;
+	box->x_max = x0;
+	box->x_min = x0;
+	box->y_max = y0;
+	box->y_min = y0;
+	box->z_max = cell0.z;
+	box->z_min = cell0.z;
 }
 
 static void	box_update_with_cell(t_box *box, t_point2d p, t_cell cell)
@@ -46,7 +45,8 @@ t_box	box_make(t_grid *grid, t_props *props)
 	size_t		i;
 	size_t		j;
 
-	box_init(&box);
+	p = project_iso(0, 0, grid->cells[0][0], props);
+	box_init(&box, p.x, p.y, grid->cells[0][0]);
 	i = 0;
 	while (i < grid->height)
 	{
